@@ -3,16 +3,16 @@
 </p>
 
 <p align="center">
-    <a href="https://huggingface.co/spaces/MBZUAI-LLM/Mobile-MMLU"><img src="https://img.shields.io/badge/%F0%9F%8F%86-leaderboard-blue"></a>
+    <a href="https://huggingface.co/spaces/MBZUAI-LLM/Mobile-MMLU-Challenge"><img src="https://img.shields.io/badge/%F0%9F%8F%86-leaderboard-blue"></a>
     <a href="https://huggingface.co/datasets/MBZUAI-LLM/Mobile-MMLU"><img src="https://img.shields.io/badge/🤗-dataset-orange"></a>
-    <a href="{website}"><img src="https://img.shields.io/badge/📱-website-8A2BE2"></a>
+    <a href="https://vila-lab.github.io/Mobile_MMLU/"><img src="https://img.shields.io/badge/📱-website-8A2BE2"></a>
     <a href="https://github.com/VILA-Lab/Mobile-MMLU/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
     <a href="https://x.com/vila_shen_lab"><img src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fx.com%2Fvila_shen_lab&label=Follow%20%40vila_shen_lab"></a>
     <a href="https://www.python.org/downloads/release/python-3100/"><img src="https://img.shields.io/badge/python-3.10+-blue.svg"></a>
     <a href="https://github.com/VILA-Lab/Mobile-MMLU/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat"></a>
 </p>
 
-# Mobile-MMLU: A Mobile Intelligence Massive Multitask Language Understanding Benchmark
+# Mobile-MMLU: A Mobile Intelligence Language Understanding Benchmark
 
 ## Overview
 
