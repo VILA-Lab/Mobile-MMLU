@@ -32,6 +32,13 @@ Visit our [live leaderboard](https://huggingface.co/spaces/SondosMB/Mobile-MMLU)
 
 ## Getting Started
 
+### Backends
+
+We current support the following `backends` for model inference:
+
+* `hf`: [HF Tranformers](https://github.com/huggingface/transformers)
+* `gptqmodel`: [GPTQModel](https://github.com/ModelCloud/GPTQModel) for gptq quantized models
+
 ### Response Generation
 
 1. Install required packages:
@@ -71,6 +78,4 @@ Each row contains:
 ### Submission
 
 1. After generating the CSV file with your model's predictions, submit it through our evaluation portal at [link](https://huggingface.co/spaces/SondosMB/Mobile-MMLU)
-
-
 
