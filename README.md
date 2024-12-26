@@ -34,7 +34,7 @@ Visit our [live leaderboard](https://huggingface.co/spaces/SondosMB/Mobile-MMLU)
 
 ### Backends
 
-We current support the following `backends` for model inference:
+We currently support the following `backends` for model inference:
 
 * `hf`: [HF Tranformers](https://github.com/huggingface/transformers)
 * `gptqmodel`: [GPTQModel](https://github.com/ModelCloud/GPTQModel) for gptq quantized models
