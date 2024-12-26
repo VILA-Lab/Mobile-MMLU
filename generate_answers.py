@@ -84,44 +84,17 @@ def main(args):
         shuffle=False,
         collate_fn=collate_fn
     )
-
-    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
-    # hf requires that pad_token is set or generate will crash 
-    # set to safe default if model tokenizer does not set pad_token
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-        
-    # normalize args
-    if isinstance(args.device, str):
-        args.device = args.device.lower()
-
-    if isinstance(args.backend, str):
-        args.backend = args.backend.lower()
-
-    if args.backend == 'gptqmodel':
-        try:
-            from gptqmodel import GPTQModel
-        except ModuleNotFoundError as exception:
-            raise type(exception)(
-                "Tried to load gptqmodel, but gptqmodel is not installed ",
-                "please install gptqmodel via `pip install gptqmodel --no-build-isolation`",
-            )
-        # gptqmodel wil auto select cuda, xpu, mps, cpu in that order if passed None == auto mode.
-        model = GPTQModel.load(model_id_or_path=args.model_name, device=args.device if args.device != "auto" else None)
-        device = model.device
-    else:
-        if args.device == "auto":
-            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        else:
-            device = torch.device(args.device)
-        
-        model = AutoModelForCausalLM.from_pretrained(
-            args.model_name,
-            torch_dtype=torch.bfloat16,
-            device_map=device
-        ).eval()
-
+    
+    device = torch.device(args.device if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
+    
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model_name,
+        torch_dtype=torch.bfloat16,
+        device_map=device
+    ).eval()
+    
     print(f"Processing {len(dataset)} examples in batches of {args.batch_size}...")
     results = evaluate(model, tokenizer, dataloader, device)
     
@@ -136,10 +109,8 @@ if __name__ == "__main__":
                       help='Name or path of the model to use')
     parser.add_argument('--batch_size', type=int, default=32,
                       help='Batch size for processing (default: 32)')
-    parser.add_argument('--device', type=str, default="auto",
-                      help='Device to run the model on (default: `auto` = use cuda if available else cpu)')
-    parser.add_argument('--backend', type=str, default="hf",
-                        help='Load Model on (default: `hf`). Use `gptqmodel` for gptq quantized models.')
+    parser.add_argument('--device', type=str, default="cuda",
+                      help='Device to run the model on (default: cuda)')
     args = parser.parse_args()
     
     main(args)
