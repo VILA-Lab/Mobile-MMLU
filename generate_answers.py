@@ -128,6 +128,8 @@ def main(args):
             device_map=device
         ).eval()
 
+    # hf requires that pad_token is set or generate will crash 
+    # set to safe default if model tokenizer does not set pad_token
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     
