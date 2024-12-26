@@ -112,6 +112,8 @@ def main(args):
     else:
         if args.device == "auto":
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        else:
+            device = torch.device(args.device)
         
         model = AutoModelForCausalLM.from_pretrained(
             args.model_name,
