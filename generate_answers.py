@@ -90,34 +90,13 @@ def main(args):
     if args.backend == 'gptqmodel':
         try:
             from gptqmodel import GPTQModel
-            from gptqmodel.utils import BACKEND
         except ModuleNotFoundError as exception:
             raise type(exception)(
                 "Tried to load gptqmodel, but gptqmodel is not installed ",
                 "please install gptqmodel via `pip install gptqmodel --no-build-isolation`",
             )
-
-        try:
-            backend = BACKEND(args.gptqmodel_backend)
-        except:
-            raise ValueError(f"gptqmodel not support backend: {args.gptqmodel_backend}")
-
-        if hasattr(torch, "mps") and hasattr(torch.mps, "is_available") and torch.mps.is_available():
-            device = torch.device("mps")
-        elif hasattr(torch, "xpu") and hasattr(torch.xpu, "is_available") and torch.xpu.is_available():
-            device = torch.device("xpu")
-        elif hasattr(torch, "cuda") and hasattr(torch.cuda, "is_available") and torch.cuda.is_available():
-            device = torch.device("cuda")
-        else:
-            device = torch.device("cpu")
-
-        kwargs = {
-            "model_id_or_path": args.model_name,
-            "device": device,
-            "backend": backend
-        }
-        model = GPTQModel.load(**kwargs)
-
+        model = GPTQModel.load(model_id_or_path=args.model_name)
+        device = model.device
     else:
         device = torch.device(args.device if torch.cuda.is_available() else "cpu")
         print(f"Using device: {device}")
@@ -149,8 +128,6 @@ if __name__ == "__main__":
                       help='Device to run the model on (default: cuda)')
     parser.add_argument('--backend', type=str, default="hf",
                         help='Load Model on (default: hf)')
-    parser.add_argument('--gptqmodel_backend', type=str, default="auto",
-                        help='gptqmodel backend (default: auto), only for gptqmodel')
     args = parser.parse_args()
     
     main(args)
