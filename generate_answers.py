@@ -87,6 +87,10 @@ def main(args):
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
 
+    # normalize device
+    if isinstance(args.device, str)
+        args.device = args.device.lower()
+
     if args.backend == 'gptqmodel':
         try:
             from gptqmodel import GPTQModel
@@ -95,18 +99,20 @@ def main(args):
                 "Tried to load gptqmodel, but gptqmodel is not installed ",
                 "please install gptqmodel via `pip install gptqmodel --no-build-isolation`",
             )
-        model = GPTQModel.load(model_id_or_path=args.model_name)
+        model = GPTQModel.load(model_id_or_path=args.model_name, device=device)
         device = model.device
     else:
-        device = torch.device(args.device if torch.cuda.is_available() else "cpu")
-        print(f"Using device: {device}")
-
+        if args.device == "auto"
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        
         model = AutoModelForCausalLM.from_pretrained(
             args.model_name,
             torch_dtype=torch.bfloat16,
             device_map=device
         ).eval()
 
+    print(f"Using device: {device}")
+    
     # hf requires that pad_token is set or generate will crash 
     # set to safe default if model tokenizer does not set pad_token
     if tokenizer.pad_token is None:
@@ -126,8 +132,8 @@ if __name__ == "__main__":
                       help='Name or path of the model to use')
     parser.add_argument('--batch_size', type=int, default=32,
                       help='Batch size for processing (default: 32)')
-    parser.add_argument('--device', type=str, default="cuda",
-                      help='Device to run the model on (default: cuda)')
+    parser.add_argument('--device', type=str, default="auto",
+                      help='Device to run the model on (default: auto = use cuda if available else cpu)')
     parser.add_argument('--backend', type=str, default="hf",
                         help='Load Model on (default: hf)')
     args = parser.parse_args()
