@@ -32,13 +32,6 @@ Visit our [live leaderboard](https://huggingface.co/spaces/SondosMB/Mobile-MMLU)
 
 ## Getting Started
 
-### Backends
-
-We currently support the following `backends` for model inference:
-
-* `hf`: [HF Tranformers](https://github.com/huggingface/transformers)
-* `gptqmodel`: [GPTQModel](https://github.com/ModelCloud/GPTQModel) for gptq quantized models
-
 ### Response Generation
 
 1. Install required packages:
@@ -57,8 +50,7 @@ python generate_answers.py \
 The script supports various arguments:
 - `--model_name`: Name or path of the model (required)
 - `--batch_size`: Batch size for processing (default: 32)
-- `--device`: Device to run the model on (default: `auto` = use cuda if available else cpu)
-- `--backend`: Load Model on (default: `hf`). Use `gptqmodel` for gptq quantized models.
+- `--device`: Device to run the model on (default: cuda)
 
 ### Response Format
 
@@ -78,4 +70,6 @@ Each row contains:
 ### Submission
 
 1. After generating the CSV file with your model's predictions, submit it through our evaluation portal at [link](https://huggingface.co/spaces/SondosMB/Mobile-MMLU)
+
+
 
