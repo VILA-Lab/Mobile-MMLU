@@ -134,9 +134,9 @@ if __name__ == "__main__":
     parser.add_argument('--batch_size', type=int, default=32,
                       help='Batch size for processing (default: 32)')
     parser.add_argument('--device', type=str, default="auto",
-                      help='Device to run the model on (default: auto = use cuda if available else cpu)')
+                      help='Device to run the model on (default: `auto` = use cuda if available else cpu)')
     parser.add_argument('--backend', type=str, default="hf",
-                        help='Load Model on (default: hf)')
+                        help='Load Model on (default: `hf`). Use `gptqmodel` for gptq quantized models.')
     args = parser.parse_args()
     
     main(args)
