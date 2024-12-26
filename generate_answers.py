@@ -86,7 +86,11 @@ def main(args):
     )
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
-
+    # hf requires that pad_token is set or generate will crash 
+    # set to safe default if model tokenizer does not set pad_token
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+        
     # normalize args
     if isinstance(args.device, str)
         args.device = args.device.lower()
@@ -115,12 +119,6 @@ def main(args):
         ).eval()
 
     print(f"Using device: {device}")
-    
-    # hf requires that pad_token is set or generate will crash 
-    # set to safe default if model tokenizer does not set pad_token
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    
     print(f"Processing {len(dataset)} examples in batches of {args.batch_size}...")
     results = evaluate(model, tokenizer, dataloader, device)
     
