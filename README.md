@@ -50,7 +50,8 @@ python generate_answers.py \
 The script supports various arguments:
 - `--model_name`: Name or path of the model (required)
 - `--batch_size`: Batch size for processing (default: 32)
-- `--device`: Device to run the model on (default: cuda)
+- `--device`: Device to run the model on (default: `auto` = use cuda if available else cpu)
+- `--backend`: Load Model on (default: `hf`). Use `gptqmodel` for gptq quantized models.
 
 ### Response Format
 
