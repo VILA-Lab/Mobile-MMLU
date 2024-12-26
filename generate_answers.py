@@ -106,7 +106,7 @@ def main(args):
                 "Tried to load gptqmodel, but gptqmodel is not installed ",
                 "please install gptqmodel via `pip install gptqmodel --no-build-isolation`",
             )
-        model = GPTQModel.load(model_id_or_path=args.model_name, device=args.device if args.device != "auto" else : None)
+        model = GPTQModel.load(model_id_or_path=args.model_name, device=args.device if args.device != "auto" else None)
         device = model.device
     else:
         if args.device == "auto":
