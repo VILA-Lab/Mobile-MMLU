@@ -109,7 +109,7 @@ def main(args):
         model = GPTQModel.load(model_id_or_path=args.model_name, device=args.device)
         device = model.device
     else:
-        if args.device == "auto"
+        if args.device == "auto":
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         
         model = AutoModelForCausalLM.from_pretrained(
