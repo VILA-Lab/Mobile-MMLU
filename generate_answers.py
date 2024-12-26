@@ -92,10 +92,10 @@ def main(args):
         tokenizer.pad_token = tokenizer.eos_token
         
     # normalize args
-    if isinstance(args.device, str)
+    if isinstance(args.device, str):
         args.device = args.device.lower()
 
-    if isinstance(args.backend, str)
+    if isinstance(args.backend, str):
         args.backend = args.backend.lower()
 
     if args.backend == 'gptqmodel':
@@ -106,7 +106,7 @@ def main(args):
                 "Tried to load gptqmodel, but gptqmodel is not installed ",
                 "please install gptqmodel via `pip install gptqmodel --no-build-isolation`",
             )
-        model = GPTQModel.load(model_id_or_path=args.model_name, device=device)
+        model = GPTQModel.load(model_id_or_path=args.model_name, device=args.device)
         device = model.device
     else:
         if args.device == "auto"
