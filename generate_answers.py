@@ -87,9 +87,12 @@ def main(args):
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
 
-    # normalize device
+    # normalize args
     if isinstance(args.device, str)
         args.device = args.device.lower()
+
+    if isinstance(args.backend, str)
+        args.backend = args.backend.lower()
 
     if args.backend == 'gptqmodel':
         try:
