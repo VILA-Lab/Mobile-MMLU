@@ -4,7 +4,8 @@
 
 <p align="center">
     <a href="https://huggingface.co/spaces/MBZUAI-LLM/Mobile-MMLU-Challenge"><img src="https://img.shields.io/badge/%F0%9F%8F%86-leaderboard-blue"></a>
-    <a href="https://huggingface.co/datasets/MBZUAI-LLM/Mobile-MMLU"><img src="https://img.shields.io/badge/🤗-dataset-orange"></a>
+    <a href="https://huggingface.co/datasets/MBZUAI-LLM/Mobile-MMLU"><img src="https://img.shields.io/badge/🤗-Mobile_MMLU-orange"></a>
+    <a href="https://huggingface.co/datasets/MBZUAI-LLM/Mobile-MMLU-Pro"><img src="https://img.shields.io/badge/🤗-Mobile_MMLU_Pro-orange"></a>
     <a href="https://vila-lab.github.io/Mobile_MMLU/"><img src="https://img.shields.io/badge/📱-website-8A2BE2"></a>
     <a href="https://github.com/VILA-Lab/Mobile-MMLU/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
     <a href="https://x.com/vila_shen_lab"><img src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fx.com%2Fvila_shen_lab&label=Follow%20%40vila_shen_lab"></a>
@@ -17,6 +18,8 @@
 ## Overview
 
 Mobile-MMLU is a comprehensive benchmark designed to evaluate mobile-compatible Large Language Models (LLMs) across 80 diverse fields including Education, Healthcare, and Technology. Our benchmark is redefining mobile intelligence evaluation for a smarter future, with a focus on real-world applicability and performance metrics that matter in mobile environments.
+
+We also introduce the **Mobile-MMLU-Pro**, which is a more compact and sophisticated version of Mobile-MMLU. You can look at both datasets at the Hugging Face ([Mobile-MMLU](https://huggingface.co/datasets/MBZUAI-LLM/Mobile-MMLU), [Mobile-MMLU-Pro](https://huggingface.co/datasets/MBZUAI-LLM/Mobile-MMLU-Pro)).
 
 ## Key Features
 
